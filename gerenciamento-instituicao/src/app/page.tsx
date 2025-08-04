@@ -1,13 +1,36 @@
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-10">
-      <h1 className="text-5xl font-bold text-blue-600">Meu Primeiro Projeto Next.js</h1>
-      <p className="mt-4 text-lg text-gray-700">Criado com muito odio</p>
-      <p className="mt-2 text-sm text-gray-500">Desenvolvido por: Joao Emanoel</p>
-      <p className="mt-2 text-sm text-gray-500">Data: 29/07/2025</p>
-      <p className="mt-2 text-sm text-gray-500">Versão: 1.0.0</p>
-      <p className="mt-2 text-sm text-gray-500">Tecnologias: Next.js, React, Tailwind CSS</p>
-      <p className="mt-2 text-sm text-gray-500">Licença: Minha posse</p>
+    <main className="min-h-screen flex item-center justify-center bg-gray-100">
+
+      <div className="w-full max-w-sm bg-withe p-8 rounded-lg shadow-md border-1">
+
+        <h1 className="text-2x1 font-bold text-center mb-6">Login</h1>
+
+        <form className="flex flex-col gap-4">
+
+          <input
+            type="email"
+            placeholder="Email"
+            className="p-3 border nporder-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            className="p-3 border nporder-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white p-3 rounded hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Enter
+          </button>
+        </form>
+      </div>
     </main>
+
+
+
   );
 }
