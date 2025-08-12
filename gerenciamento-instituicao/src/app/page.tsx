@@ -1,3 +1,5 @@
+import InputSenha from "@/app/components/InputSenha";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-white">
@@ -14,11 +16,7 @@ export default function Home() {
             className="p-3 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700"
           />
 
-          <input
-            type="password"
-            placeholder="Senha"
-            className="p-3 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-700"
-          />
+          <InputSenha />
 
           <button
             type="submit"
