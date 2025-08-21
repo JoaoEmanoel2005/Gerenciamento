@@ -1,14 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Usuario } from "@/utils/classes/usuario";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { nome, email, senha } = req.body;
 
-    // Aqui você faria a lógica de salvar no banco de dados
-    // Por enquanto vamos só simular
-    console.log("Novo usuário:", { nome, email, senha });
+    try {
+      // Cria um novo usuário
+      const usuario = new Usuario(nome, email, senha);
+      await usuario.salvar();
 
-    return res.status(201).json({ success: true, message: "Usuário cadastrado com sucesso!" });
+      return res.status(201).json({ 
+        success: true, 
+        message: "Usuário cadastrado com sucesso!", 
+        id: usuario.getId() 
+      });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ success: false, message: "Erro ao cadastrar usuário" });
+    }
   }
 
   res.setHeader("Allow", ["POST"]);
