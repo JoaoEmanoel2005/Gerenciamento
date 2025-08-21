@@ -27,7 +27,6 @@ Este é um projeto criado por mim, João Emanoel, para aprofundar meus conhecime
 
 1. Clone o repositório:
 
-```bash
 git https://github.com/JoaoEmanoel2005/Gerenciamento.git
 cd Gerenciamento
 
