@@ -1,6 +1,6 @@
-# Sistema de Gerenciamento de instituição
+# Sistema de Gerenciamento de Instituição
 
-Este é um projeto criado por mim, João Emanoel, para aprofundar meus conhecimentos na linguagem typescript, e trabalhar o uso de outros itens, como react e tailwind.
+Projeto criado por João Emanoel para aprofundar conhecimentos em **TypeScript**, além de praticar **React**, **Next.js**, **Tailwind CSS** e integração com **MySQL**.
 
 ---
 
@@ -25,11 +25,12 @@ Este é um projeto criado por mim, João Emanoel, para aprofundar meus conhecime
 
 ## Configuração do projeto
 
-```bash
-1. Clone o repositório:
+### 1. Clone o repositório
 
-git https://github.com/JoaoEmanoel2005/Gerenciamento.git
+```bash
+git clone https://github.com/JoaoEmanoel2005/Gerenciamento.git
 cd Gerenciamento
+
 
 2. Instale as dependências:
 
