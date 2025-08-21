@@ -1,14 +1,35 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Usuario } from "@/utils/classes/usuario";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const { nome, email, senha } = req.body;
+    const { nome, email, senha, cep } = req.body;
 
-    // Aqui você faria a lógica de salvar no banco de dados
-    // Por enquanto vamos só simular
-    console.log("Novo usuário:", { nome, email, senha });
+    if (!nome || !email || !senha || !cep) {
+      return res.status(400).json({ success: false, message: "Todos os campos são obrigatórios" });
+    }
 
-    return res.status(201).json({ success: true, message: "Usuário cadastrado com sucesso!" });
+    try {
+      const usuario = new Usuario(nome, email, senha, cep);
+      await usuario.salvar();
+
+      return res.status(201).json({ 
+        success: true, 
+        message: "Usuário cadastrado com sucesso!", 
+        id: usuario.getId(),
+        cidade: usuario.getCidade()
+      });
+    } catch (err: any) {
+      console.error(err);
+      if (err.code === "ER_DUP_ENTRY") {
+        return res.status(400).json({ success: false, message: "Email já cadastrado" });
+      }
+      if (err.code === "ER_BAD_NULL_ERROR") {
+        return res.status(400).json({ success: false, message: "CEP inválido" });
+      }
+
+      return res.status(500).json({ success: false, message: "Erro ao cadastrar usuário" });
+    }
   }
 
   res.setHeader("Allow", ["POST"]);
