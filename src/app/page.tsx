@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-white">
-      <div className="w-full max-w-xs h-auto sm:h-[480px] bg-gray-100 p-6 rounded-xl shadow-lg flex flex-col justify-center border-1">
+      <div className="w-full max-w-xs h-auto sm:h-[520px] bg-gray-100 p-6 rounded-xl shadow-lg flex flex-col justify-center border-1">
 
         <h1 className="text-3xl font-bold text-center mb-10 border-b border-gray-400 pb-2">
           {isLogin ? "Login" : "Cadastro"}
@@ -49,10 +49,13 @@ function LoginForm() {
         body: JSON.stringify({ email, senha }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.message || "Erro no login");
       }
+
+      localStorage.setItem("usuario", JSON.stringify(data));
 
       router.push("/home");
     } catch (err: any) {
@@ -85,6 +88,7 @@ function RegisterForm({ setIsLogin }: { setIsLogin: (val: boolean) => void }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [cep, setCep] = useState(""); // novo campo
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -97,19 +101,21 @@ function RegisterForm({ setIsLogin }: { setIsLogin: (val: boolean) => void }) {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha }),
+        body: JSON.stringify({ nome, email, senha, cep }),
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Erro no cadastro");
 
-      window.alert("Conta criada com sucesso! Agora faça login.");
+      window.alert(`Conta criada com sucesso! Agora faça login.`);
       setSuccess("Usuário cadastrado com sucesso!");
-      
+
       // Resetar campos
       setNome("");
       setEmail("");
       setSenha("");
+      setCep("");
+
       // Voltar para login
       setTimeout(() => setIsLogin(true), 1000);
     } catch (err: any) {
@@ -131,6 +137,13 @@ function RegisterForm({ setIsLogin }: { setIsLogin: (val: boolean) => void }) {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="p-3 border border-black rounded focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-700"
+      />
+      <input
+        type="text"
+        placeholder="CEP"
+        value={cep}
+        onChange={(e) => setCep(e.target.value)}
         className="p-3 border border-black rounded focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-700"
       />
       <InputSenha value={senha} onChange={(e: any) => setSenha(e.target.value)} />
