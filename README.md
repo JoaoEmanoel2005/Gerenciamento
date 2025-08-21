@@ -25,6 +25,7 @@ Este é um projeto criado por mim, João Emanoel, para aprofundar meus conhecime
 
 ## Configuração do projeto
 
+```bash
 1. Clone o repositório:
 
 git https://github.com/JoaoEmanoel2005/Gerenciamento.git
@@ -33,7 +34,7 @@ cd Gerenciamento
 2. Instale as dependências:
 
 npm install
-ou
+# ou
 yarn install
 
 
@@ -52,7 +53,7 @@ Basta executar o script sql, nele tem a linha para criar o banco e o codigo da t
 4. Rodando o projeto
 
 npm run dev
-ou
+# ou
 yarn dev
 
 Pronto, o projeto estará rodando em: http://localhost:3000
